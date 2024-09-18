@@ -53,8 +53,10 @@ function listStudents() {
     } else {
       console.log('List of students:');
       for (let i = 0; i < students.length; i++) {
-        const student = students[i];
-        console.log(`ID: ${student.id}, Name: ${student.firstName} ${student.lastName}, Age: ${student.age}, Grade: ${student.grade}`);
+        // const student = students[i];
+        console.log(students[i]);
+        
+        // console.log(`ID: ${student.id}, Name: ${student.firstName} ${student.lastName}, Age: ${student.age}, Grade: ${student.grade}`);
       }
     }
   }
@@ -62,16 +64,21 @@ function listStudents() {
   
   // e. Find Students by Grade
   function findStudentsByGrade(grade) {
-    const filteredStudents = students.filter(student => student.grade === grade);
-    if (filteredStudents.length > 0) {
-      console.log(`Students with grade ${grade}:`);
-      filteredStudents.forEach(student => {
-        console.log(`${student.firstName} ${student.lastName}, Age: ${student.age}`);
-      });
-    } else {
+    let found = false;  
+  
+    console.log(`Students with grade ${grade}:`);
+    
+    for (let i = 0; i < students.length; i++) {
+      if (students[i].grade === grade) {
+        console.log(`${students[i].firstName} ${students[i].lastName}, Age: ${students[i].age}`);
+        found = true;  
+      }
+    }
+    if (!found) {
       console.log(`No students found with grade ${grade}.`);
     }
   }
+  
   
   // f. Calculate Average Age
   function calculateAverageAge() {
@@ -87,22 +94,22 @@ function listStudents() {
   // Test Cases
   
   // Add a new student
-  addStudent(5, 'Emily', 'Davis', 23, 'B');
+//   addStudent(5, 'Emily', 'Davis', 23, 'B');
   
-  // Update a student's information
-  updateStudent(2, { firstName: 'Jane', lastName: 'Doe', age: 23, grade: 'A' });
+//   // Update a student's information
+//   updateStudent(2, { firstName: 'Jane', lastName: 'Doe', age: 23, grade: 'A' });
   
-  // Delete a student
-  deleteStudent(3);
+//   // Delete a student
+//   deleteStudent(3);
   
   // List all students
   listStudents();
   
   // Find students by grade
-  findStudentsByGrade('A');
+//   findStudentsByGrade('A');
   
-  // Calculate average age of all students
-  calculateAverageAge();
+//   // Calculate average age of all students
+//   calculateAverageAge();
   
 
 
