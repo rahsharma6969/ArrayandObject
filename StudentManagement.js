@@ -7,63 +7,109 @@
 // firstName, lastName, age, and grade.
 
 
-// Define the initial array of students
-let student = [
-    { name: "John", age: 20, grade: 90 },
-    { name: "Jane", age: 21, grade: 85 },
-    { name: "Bob", age: 19, grade: 95 },
-];
 
-// Add new student data
-function addNewStudent(name, age, grade) {
-    const newStudent = { name, age, grade };
-    student.push(newStudent);
-    return student;
-}
 
-// Delete student by name
-function deleteStudent(name) {
-   
-    const index = student.findIndex(student => student.name === name);
 
-    
-    if (index !== -1) {
-        const removedStudent = student.splice(index, 1);
-        console.log('Student deleted:', removedStudent[0]);
+let students = [
+    { id: 1, firstName: 'John', lastName: 'Doe', age: 20, grade: 'A' },
+    { id: 2, firstName: 'Jane', lastName: 'Smith', age: 22, grade: 'B' },
+    { id: 3, firstName: 'Jim', lastName: 'Beam', age: 19, grade: 'A' },
+    { id: 4, firstName: 'Anna', lastName: 'Taylor', age: 21, grade: 'C' }
+  ];
+  
+  // a. Add a Student
+  function addStudent(id, firstName, lastName, age, grade) {
+    students.push({ id, firstName, lastName, age, grade });
+    console.log(`Student ${firstName} ${lastName} added successfully!`);
+  }
+  
+  // b. Update Student Information
+  function updateStudent(id, updatedInfo) {
+    let student = students.find(student => student.id === id);
+    if (student) {
+      Object.assign(student, updatedInfo);
+      console.log(`Student with ID ${id} updated successfully!`);
     } else {
-        console.log('Student not found');
+      console.log('Student not found.');
     }
-}
-
-//update function
-
-function updateStudent(name, newInfo) {
-    
-    const index = student.findIndex(students => students.name === name);
-    console.log(index);
-    
-    
+  }
+  
+  // c. Delete a Student
+  function deleteStudent(id) {
+    const index = students.findIndex(student => student.id === id);
     if (index !== -1) {
-        student[index] = { ...student[index], ...newInfo };
-        console.log('Student updated:', student[index]);
+      students.splice(index, 1);
+      console.log(`Student with ID ${id} deleted successfully!`);
     } else {
-        console.log('Student not found');
+      console.log('Student not found.');
     }
-}
-
-
-// Add a new student
-const addNewData = addNewStudent("Rahul", 20, 95);
-console.log(addNewData);
-
-// Delete a student by name
-deleteStudent("Jane"); 
-
-//update
-updateStudent("Jane", { age: 22, grade: 88 });
-// Display all students to verify the deletion
-console.log(student);
-
-
+  }
+  
+  // d. List All Students
+// d. List All Students using a traditional for loop
+function listStudents() {
+    if (students.length === 0) {
+      console.log('No students available.');
+    } else {
+      console.log('List of students:');
+      for (let i = 0; i < students.length; i++) {
+        // const student = students[i];
+        console.log(students[i]);
+        
+        // console.log(`ID: ${student.id}, Name: ${student.firstName} ${student.lastName}, Age: ${student.age}, Grade: ${student.grade}`);
+      }
+    }
+  }
+  
+  
+  // e. Find Students by Grade
+  function findStudentsByGrade(grade) {
+    let found = false;  
+  
+    console.log(`Students with grade ${grade}:`);
+    
+    for (let i = 0; i < students.length; i++) {
+      if (students[i].grade === grade) {
+        console.log(`${students[i].firstName} ${students[i].lastName}, Age: ${students[i].age}`);
+        found = true;  
+      }
+    }
+    if (!found) {
+      console.log(`No students found with grade ${grade}.`);
+    }
+  }
+  
+  
+  // f. Calculate Average Age
+  function calculateAverageAge() {
+    if (students.length === 0) {
+      console.log('No students available to calculate average age.');
+      return;
+    }
+    const totalAge = students.reduce((sum, student) => sum + student.age, 0);
+    const averageAge = totalAge / students.length;
+    console.log(`The average age of students is ${averageAge.toFixed(2)} years.`);
+  }
+  
+  // Test Cases
+  
+  // Add a new student
+//   addStudent(5, 'Emily', 'Davis', 23, 'B');
+  
+//   // Update a student's information
+//   updateStudent(2, { firstName: 'Jane', lastName: 'Doe', age: 23, grade: 'A' });
+  
+//   // Delete a student
+//   deleteStudent(3);
+  
+  // List all students
+  listStudents();
+  
+  // Find students by grade
+//   findStudentsByGrade('A');
+  
+//   // Calculate average age of all students
+//   calculateAverageAge();
+  
 
 
